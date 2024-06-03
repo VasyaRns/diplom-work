@@ -5,7 +5,7 @@ import indexRouter from './routes/index.js';
 import feedRouter from './routes/feed.js';
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 morgan.token('host', function (req, res) {
     return req.hostname;
