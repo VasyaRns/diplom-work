@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Link, Route, Routes, useParams } from 'react-router-dom';import FeedPage from './components/FeedPage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import FeedPage from './components/FeedPage';
+import SportsPage from './components/SportsPage.jsx'
 import MainPage from './components/MainPage';
 
 const App = () => {
@@ -6,7 +8,8 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/:feedName" element={<FeedPage/>} />
+                <Route path="/news/:feedName" element={<FeedPage/>} />
+                <Route path="/sports/:sportsName" element={<SportsPage/>} />
             </Routes>
         </Router>
     );

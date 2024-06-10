@@ -4,18 +4,18 @@ import {useParams} from "react-router-dom";
 import {SvgSpinner} from '../icons/spinner.jsx'
 
 
-const FeedPage = () => {
+const SportsPage = () => {
     const [feed, setFeed] = useState('');
-    const { feedName } = useParams();
+    const { sportsName } = useParams();
 
     useEffect(() => {
         const fetchFeed = async () => {
-            const response = await fetch(`http://localhost:3001/api/news/${feedName}`);
+            const response = await fetch(`http://localhost:3001/api/sports/${sportsName}`);
             const data = await response.json();
             setFeed(data);
         };
         fetchFeed();
-    }, [feedName]);
+    }, [sportsName]);
 
     if (!feed) {
         return <SvgSpinner/>;
@@ -24,4 +24,4 @@ const FeedPage = () => {
     return <FeedComponent feed={feed} />;
 };
 
-export default FeedPage;
+export default SportsPage;

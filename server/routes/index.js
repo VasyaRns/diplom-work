@@ -1,21 +1,20 @@
 import express from 'express';
-import parser from '../parser.js';
-import urls from '../urls.js';
+import feedUrls from "../urls/feedUrls.js";
+import sportsUrls from "../urls/sportsUrls.js";
+import {fetchData} from "../utils/fetchData.js";
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const names = Object.keys(urls);
-        const titles = await Promise.all(names.map(async (link) => {
-            const feed = await parser.parseURL(urls[link]);
-            const { items, ...rest } = feed;
-            return rest;
-        }));
-        const response = names.map((name, index) => ({
-            name,
-            ...titles[index]
-        }));
+        const news = await fetchData(feedUrls);
+        const sports = await fetchData(sportsUrls);
+
+        const response = {
+            news,
+            sports
+        };
+
         res.json(response);
     } catch (error) {
         console.error(error);
