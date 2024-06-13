@@ -10,7 +10,7 @@ const FeedPage = () => {
 
     useEffect(() => {
         const fetchFeed = async () => {
-            const response = await fetch(`http://localhost:3001/api/news/${feedName}`);
+            const response = await fetch(`https://diplom-work-1.onrender.com/api/news/${feedName}`);
             const data = await response.json();
             setFeed(data);
         };

@@ -7,7 +7,7 @@ const MainPage = () => {
 
     useEffect(() => {
         const fetchFeeds = async () => {
-            const response = await fetch('http://localhost:3001/api');
+            const response = await fetch('https://diplom-work-1.onrender.com/api');
             const data = await response.json();
             setFeeds(data);
         };
