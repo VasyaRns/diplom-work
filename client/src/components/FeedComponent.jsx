@@ -1,4 +1,3 @@
-// FeedComponent.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeedItem from './FeedItem';
@@ -25,6 +24,10 @@ const FeedComponent = ({ feed }) => {
         };
     }, []);
 
+    if (!feed || !feed.items) {
+        return <Spinner />;
+    }
+
     return (
         <div className="container mx-auto py-8 flex flex-col">
             <Link
@@ -33,18 +36,12 @@ const FeedComponent = ({ feed }) => {
             >
                 Назад
             </Link>
-            {loading ? (
-                <Spinner />
-            ) : (
-                <>
-                    <h1 className="mb-4 text-4xl">{feed.description}</h1>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {feed.items.slice(0, displayedItems).map((item, index) => (
-                            <FeedItem key={index} item={item} />
-                        ))}
-                    </div>
-                </>
-            )}
+            <h1 className="mb-4 text-4xl">{feed.description}</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {feed.items.slice(0, displayedItems).map((item, index) => (
+                    <FeedItem key={index} item={item} />
+                ))}
+            </div>
         </div>
     );
 };

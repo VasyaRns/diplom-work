@@ -5,7 +5,6 @@ import Spinner from '../icons/Spinner';
 
 const MainPage = () => {
     const [feeds, setFeeds] = useState({ news: [], sports: [] });
-    const [selectedFeed, setSelectedFeed] = useState('');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -23,10 +22,6 @@ const MainPage = () => {
         fetchFeeds();
     }, []);
 
-    const handleFeedClick = (feed) => {
-        setSelectedFeed(feed);
-    };
-
     return (
         <div className="container mx-auto py-8">
             <h1 className="text-4xl font-bold mb-4">Список лент</h1>
@@ -41,7 +36,6 @@ const MainPage = () => {
                                 to={`/news/${feed.name}`}
                                 key={feed.name}
                                 className="bg-white rounded-lg shadow-md p-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg flex items-center"
-                                onClick={() => handleFeedClick(feed.name)}
                             >
                                 <h2 className="text-2xl font-bold">{feed.title}</h2>
                             </Link>
@@ -54,7 +48,6 @@ const MainPage = () => {
                                 to={`/sports/${feed.name}`}
                                 key={feed.name}
                                 className="bg-white rounded-lg shadow-md p-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg flex items-center"
-                                onClick={() => handleFeedClick(feed.name)}
                             >
                                 <h2 className="text-2xl font-bold">{feed.title}</h2>
                             </Link>
