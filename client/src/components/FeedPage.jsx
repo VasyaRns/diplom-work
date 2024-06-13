@@ -1,7 +1,6 @@
 import{ useEffect, useState } from 'react';
 import FeedComponent from './FeedComponent';
 import {useParams} from "react-router-dom";
-import {SvgSpinner} from '../icons/spinner.jsx'
 
 
 const FeedPage = () => {
@@ -17,9 +16,6 @@ const FeedPage = () => {
         fetchFeed();
     }, [feedName]);
 
-    if (!feed) {
-        return <SvgSpinner/>;
-    }
 
     return <FeedComponent feed={feed} />;
 };
